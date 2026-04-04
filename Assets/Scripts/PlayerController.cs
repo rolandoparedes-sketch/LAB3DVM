@@ -107,4 +107,13 @@ public class PlayerController : MonoBehaviour
         IsDashing = true;
         dashTimer = dashDuration;
     }
+    void OnDrawGizmos()
+    {
+       
+        Gizmos.color = Color.blue;
+
+        Vector3 moveDir = transform.forward * moveInput.y;
+        Gizmos.DrawLine(transform.position, transform.position + moveDir * 2f);
+ 
+    }
 }

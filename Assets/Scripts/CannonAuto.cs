@@ -28,4 +28,27 @@ public class CannonAuto : MonoBehaviour
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
         rb.linearVelocity = direction.normalized * force;
     }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Vector3 dir = direction.normalized * force * 0.2f;
+        Gizmos.DrawLine(firePoint.position, firePoint.position + dir);
+
+        Gizmos.color = Color.blue;
+
+        Vector3 start = firePoint.position;
+        Vector3 velocity = direction.normalized * force;
+
+        float step = 0.2f;
+        Vector3 prev = start;
+
+        for (float t = 0; t < 2f; t += step)
+        {
+            Vector3 next = start + velocity * t;
+            Gizmos.DrawLine(prev, next);
+            prev = next;
+        }
+    
+    }
 }
